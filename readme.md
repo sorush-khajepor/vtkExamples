@@ -4,7 +4,7 @@ Using VTK library, this writes information of a set of particles: position, velo
 
 ## Download VTK library
 
-If VTK is not installed on your system, download the latest version. Here, I used version 9. Then in a terminal:
+If VTK is not installed on your system, download the latest version. Here, I used version 9.0.3. Then in a terminal:
 
 ```
 cd /path/to/vtk/source/
