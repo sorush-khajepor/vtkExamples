@@ -39,8 +39,8 @@ int main(int, char *[])
     densities->InsertNextTypedTuple(density);
   }
 
-  polydata->GetPointData()->SetScalars(densities);
-  polydata->GetPointData()->SetVectors(velocities);
+  polydata->GetPointData()->AddArray(densities);
+  polydata->GetPointData()->AddArray(velocities);
 
   vtkNew<vtkXMLPolyDataWriter> writer;
   writer->SetFileName("test.vtp");
