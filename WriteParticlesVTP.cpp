@@ -6,9 +6,10 @@
 #include <vtkXMLPolyDataWriter.h>
 #include <vtkDoubleArray.h>
 
-
 int main(int, char *[])
 {
+
+  // setup points locations
   vtkNew<vtkPoints> points;
   auto pointsCount = 3;
   for (unsigned int i = 0; i < pointsCount; ++i)
@@ -16,9 +17,7 @@ int main(int, char *[])
     points->InsertNextPoint(i, i, i);
   }
 
-  vtkNew<vtkPolyData> polydata;
-  polydata->SetPoints(points);
-
+  // setup properties
   auto velocities = vtkSmartPointer<vtkDoubleArray>::New();
   velocities->SetNumberOfComponents(3);
   velocities->SetName("Velocity");
@@ -39,6 +38,10 @@ int main(int, char *[])
     densities->InsertNextTypedTuple(density);
   }
 
+  // Injecting points and their properties
+  vtkNew<vtkPolyData> polydata;
+  polydata->SetPoints(points);
+
   polydata->GetPointData()->AddArray(densities);
   polydata->GetPointData()->AddArray(velocities);
 
@@ -48,7 +51,7 @@ int main(int, char *[])
 
   // Optional - set the mode. The default is binary.
   // writer->SetDataModeToBinary();
-   writer->SetDataModeToAscii();
+  writer->SetDataModeToAscii();
 
   writer->Write();
 
